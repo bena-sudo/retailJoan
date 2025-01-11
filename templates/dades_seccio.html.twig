@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Secció</title>
+</head>
+<body>
+    <h1>Dades de la secció</h1>
+    {% if seccio %}
+        <ul>
+            {% for clau, valor in seccio %}
+                {% if valor is iterable %}
+                    <li>{{ clau }}:
+                        <ul>
+                            {% for subvalor in valor %}
+                                <li>{{ subvalor }}</li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% else %}
+                    <li>{{ clau }}: {{ valor }}</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No s’ha trobat la secció: {{ codi }}</p>
+    {% endif %}
+    <a href="{{ path('inici') }}">
+        <img src="{{ asset('imgs/enrere.png') }}" class="imatgeTornar" alt="Tornar a Inici">
+    </a>
+</body>
+</html>
+
+
+
+
+
+
+        

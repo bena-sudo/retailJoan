@@ -4,8 +4,9 @@ namespace App\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class SeccioController
+class SeccioController extends AbstractController
 {
     private $contactes = array(
         array("codi" => "1", "nom" => "Electrònica", "descripcio" => "Secció dedicada a dispositius electrònics", "any" => "2025", "articles" =>
@@ -42,35 +43,26 @@ class SeccioController
         ),
     );
 
-
     #[Route('/seccio/{codi}', name: 'dades_seccio')]
-    public function dades_seccio($codi)
+    public function dades_seccio($codi): Response
     {
-
         $resultat = array_filter(
             $this->contactes,
             function ($contacte) use ($codi) {
                 return $contacte["codi"] == $codi;
             }
         );
+
         if (count($resultat) > 0) {
-            $resposta = "";
             $resultat = array_shift($resultat);
-            $resposta = "<ul>";
-            foreach ($resultat as $clau => $valor) {
-                if (is_array($valor)) {
-                    $resposta .= "<li>$clau: <ul>";
-                    foreach ($valor as $subvalor) {
-                        $resposta .= "<li>$subvalor</li>";
-                    }
-                    $resposta .= "</ul></li>";
-                } else {
-                    $resposta .= "<li>$clau: $valor</li>";
-                }
-            }
-            $resposta .= "</ul>";
-            return new Response("<html><body>$resposta</body></html>");
-        } else
-            return new Response("No s’ha trobat la secció: $codi");
+            return $this->render('dades_seccio.html.twig', [
+                'seccio' => $resultat,
+            ]);
+        } else {
+            return $this->render('dades_seccio.html.twig', [
+                'seccio' => null,
+                'codi' => $codi,
+            ]);
+        }
     }
 }
