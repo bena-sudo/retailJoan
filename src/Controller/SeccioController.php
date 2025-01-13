@@ -43,15 +43,42 @@ class SeccioController extends AbstractController
         ),
     );
 
+    #[Route('/seccio', name: 'dades_seccio_void')]
+    public function dades_seccio_void(): Response
+    {
+
+        $resultat = array_filter(
+            $this->contactes,
+            function ($contacte) {
+                return array_key_first($contacte);
+            }
+        );
+
+        if (count($resultat) > 0) {
+            $resultat = array_shift($resultat);
+            return $this->render('dades_seccio.html.twig', [
+                'seccio' => $resultat,
+            ]);
+        } else {
+            return $this->render('dades_seccio.html.twig', [
+                'seccio' => null,
+                'codi' => $resultat['codi'],
+            ]);
+        }
+    }
+
     #[Route('/seccio/{codi}', name: 'dades_seccio')]
     public function dades_seccio($codi): Response
     {
+
+
         $resultat = array_filter(
             $this->contactes,
             function ($contacte) use ($codi) {
                 return $contacte["codi"] == $codi;
             }
         );
+
 
         if (count($resultat) > 0) {
             $resultat = array_shift($resultat);
