@@ -1,1 +1,0 @@
-<script src="{{ asset('assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>

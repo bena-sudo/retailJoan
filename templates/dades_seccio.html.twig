@@ -1,64 +1,43 @@
-
-
-        {% extends 'base.html.twig' %}
-{% block title %}Inici{% endblock %}
+{% extends 'base.html.twig' %}
+{% block title %}Seccions{% endblock %}
 {% block body %}
-
-
 {% if seccio %}
-      <section id="about" class="about">
+    
+    <section id="features" class="features section">
       <div class="container">
-
-        <div class="section-title">
-          <h2>Seccio</h2></div>
-
-        <div class="row">
-          <div class="col-lg-4 aos-init aos-animate" data-aos="fade-right">
-            <img src="{{asset('imgs/notfound.jpg')}}" class="img-fluid" alt="">
+        <div class="row gy-4 align-items-center features-item">
+          <div class="col-md-5 d-flex align-items-center aos-init aos-animate" data-aos="zoom-out" data-aos-delay="100">
+            <img src="assets/img/features-1.svg" class="img-fluid" alt="">
           </div>
-          <div class="col-lg-8 pt-4 pt-lg-0 content aos-init aos-animate" data-aos="fade-left">
+          <div class="col-md-7 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
             <h3>{{seccio.nom}}</h3>
             <p class="fst-italic">
               {{seccio.descripcio}}
             </p>
-            <div class="row">
-              <div class="col-lg-6">
-                <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Codi:</strong> <span>{{seccio.codi}}</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Any:</strong> <span>{{seccio.any}}</span></li>
-                </ul>
-              </div>
-              
-            </div>
+            <ul>
+              {% for s in seccio.articles %}
+                <li><i class="bi bi-check"></i><span>{{s}}</span></li>
+              {% endfor %}
+            </ul>
           </div>
-          <div class="text-center">
-          <a href="{{ path('inici') }}">
-                <img src="{{ asset('imgs/enrere.png') }}" style="width: 2%; margin-top:5%;" class="imatgeTornar" alt="Tornar a Inici">
-                Tornar a enrere
-              </a>
-              </div>
-        </div>
-
+        </div><!-- Features Item -->
       </div>
     </section>
 
-        {% else %}
-          <section id="about" class="about">
-          <div class="container">
-
-        <div class="section-title">
-          <h2>Seccio</h2>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-4 aos-init aos-animate" data-aos="fade-right">
-            <img src="{{asset('imgs/notfound.jpg')}}" class="img-fluid" alt="">
+{% else %}
+          
+    <section id="features" class="features section">
+      <div class="container">
+        <div class="row gy-4 align-items-center features-item">
+          <div class="col-md-5 d-flex align-items-center aos-init aos-animate" data-aos="zoom-out" data-aos-delay="100">
+            <img src="assets/img/features-1.svg" class="img-fluid" alt="">
           </div>
-          <div class="col-lg-8 pt-4 pt-lg-0 content aos-init aos-animate" data-aos="fade-left">
-            <h3>No s’ha trobat la secció: {{ codi }}</h3>
+          <div class="col-md-7 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+            <h3>No sa trobat la seccio: {{ codi }}</h3>
           </div>
-        </div>
+        </div><!-- Features Item -->
       </div>
     </section>
-        {% endif %}
+
+{% endif %}
 {% endblock %}
