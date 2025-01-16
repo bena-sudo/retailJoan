@@ -23,4 +23,50 @@
 
 </section>
 
+{% if seccions %}
+
+    <section id="featured" class="featured section">
+
+      <!-- Section Title -->
+      <div class="container section-title aos-init aos-animate" data-aos="fade-up">
+        <h2>Seccions</h2>
+        <p>Llista de seccions que oferim</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+        <div class="row gy-4 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+
+          {% for s in seccions %}
+            <div class="col-md-4">
+              <div class="card">
+                <div class="img">
+                  <a href="{{ path('dades_seccio', { 'codi': s.codi }) }}" >
+                    <img src="{{ asset('assets/img/cards-4.png') }}" alt="" class="img-fluid">
+                    <div class="icon"><i class="bi bi-hdd-stack"></i></div>
+                  </a>
+                </div>
+                <h2 class="title">{{ s.nom }}</h2>
+                <p>
+                  {{ s.descripcio }}
+                </p>
+              </div>
+            </div><!-- End Card Item -->
+          {% endfor %}
+          
+        </div>
+      </div>
+    </section>
+
+{% else %}
+          
+    <section id="featured" class="featured section">
+      <!-- Section Title -->
+      <div class="container section-title aos-init aos-animate" data-aos="fade-up">
+        <h2>No s'ha trobat cap secció</h2>
+        <a href="{{ path('inici') }} ><p>Torna a l'inici.</p></a>
+      </div><!-- End Section Title -->
+    </section>
+
+{% endif %}
+
 {% endblock %}
