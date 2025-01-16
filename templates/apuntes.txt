@@ -1,2 +1,1 @@
 <script src="{{ asset('assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
-<!--<li><a href="{{ path('dades_seccio') }}">Seccions</a></li>-->
