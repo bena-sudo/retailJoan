@@ -10,7 +10,7 @@
       <div class="container">
         <div class="row gy-4 align-items-center features-item">
           <div class="col-md-5 d-flex align-items-center aos-init aos-animate" data-aos="zoom-out" data-aos-delay="100">
-            <img src="assets/img/features-1.svg" class="img-fluid" alt="">
+            <img src="{{ seccio.imatge}}" class="img-fluid" alt="">
           </div>
           <div class="col-md-7 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
             <h3>{{seccio.nom}}</h3>
@@ -23,6 +23,7 @@
               {% endfor %}
             </ul>
           </div>
+          <a href="{{ path('inici') }}" ><img src="/imgs/enrere.png" style="width:50px" alt=""><p>Torna a l'inici.</p></a>
         </div><!-- Features Item -->
       </div>
     </section>
@@ -33,7 +34,7 @@
       <div class="container">
         <div class="row gy-4 align-items-center features-item">
           <div class="col-md-5 d-flex align-items-center aos-init aos-animate" data-aos="zoom-out" data-aos-delay="100">
-            <img src="assets/img/features-1.svg" class="img-fluid" alt="">
+            <a href="{{ path('inici') }}" ><img src="/imgs/enrere.png" class="img-fluid" alt=""></a>
           </div>
           <div class="col-md-7 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
             <h3>No sa trobat la seccio: {{ codi }}</h3>

@@ -7,15 +7,17 @@
       <div class="container">
         <div class="row gy-4">
           <div class="col-lg-4 order-lg-last hero-img aos-init aos-animate" data-aos="zoom-out">
+            <a href="{{ path('seccions_dades') }}"> 
             <img src="assets/img/phone_1.png" alt="Phone 1" class="phone-1">
             <img src="assets/img/phone_2.png" alt="Phone 2" class="phone-2">
+            </a>
           </div>
           <div class="col-lg-8 d-flex flex-column justify-content-center align-items text-center text-md-start aos-init aos-animate" data-aos="fade-up">
             <h2>PInici Programa Gestio Retail Joan Benavent</h2>
             <p>Este es un programa de retail creado para la clase de desplegament de 2ºDAW. </p>
             <div class="d-flex mt-4 justify-content-center justify-content-md-start">
-              <a href="{{ path('dades_seccio', { 'codi': 1 }) }}" class="download-btn"><i class="bi bi-google-play"></i> <span>Google Play</span></a>
-              <a href="{{ path('seccions_dades') }}" class="download-btn"><i class="bi bi-apple"></i> <span>App Store</span></a>
+              <a href="{{ path('dades_seccio', { 'codi': 1 }) }}" class="download-btn"> <span>Seccio 1</span></a>
+              <a href="{{ path('seccions_dades') }}" class="download-btn"> <span>Seccions</span></a>
             </div>
           </div>
         </div>
@@ -41,7 +43,7 @@
               <div class="card">
                 <div class="img">
                   <a href="{{ path('dades_seccio', { 'codi': s.codi }) }}" >
-                    <img src="{{ asset('assets/img/cards-4.png') }}" alt="" class="img-fluid">
+                    <img src="{{ s.imatge }}" alt="" class="img-fluid">
                     <div class="icon"><i class="bi bi-hdd-stack"></i></div>
                   </a>
                 </div>
