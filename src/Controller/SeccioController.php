@@ -10,9 +10,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class SeccioController extends AbstractController
 {
     private $seccions;
-    public function __construct(ServeiDadesSeccio $dades)
+    public function __construct(ServeiDadesSeccio $dadesSeccions)
     {
-        $this->seccions = $dades->get();
+        $this->seccions = $dadesSeccions->get();
     }
 
     #[Route('/seccio', name: 'dades_seccio_void')]
