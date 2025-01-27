@@ -1,4 +1,4 @@
-name: Build and deploy PHP app to Azure Web App - webappjoan
+name: Build and deploy Symfony app to Azure Web App - webappjoan
 
 on:
   push:
@@ -26,20 +26,20 @@ jobs:
 
       - name: Run composer install if composer.json exists
         if: steps.check_files.outputs.files_exists == 'true'
-        run: composer validate --no-check-publish && composer install --prefer-dist --no-progress
+        run: composer install --prefer-dist --no-progress --no-dev --optimize-autoloader
 
       - name: Build Symfony project
         run: |
           php bin/console cache:clear --env=prod
           php bin/console cache:warmup --env=prod
 
-      - name: Zip artifact for deployment (public folder only)
-        run: zip release.zip ./public/* -r
+      - name: Zip artifact for deployment (complete project)
+        run: zip -r release.zip ./* -x "node_modules/*" "tests/*"
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
-          name: php-app
+          name: symfony-app
           path: release.zip
 
   deploy:
@@ -53,7 +53,7 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
-          name: php-app
+          name: symfony-app
 
       - name: Unzip artifact for deployment
         run: unzip release.zip -d .
@@ -64,5 +64,5 @@ jobs:
         with:
           app-name: 'webappjoan'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_7686796E387B4553B90C69CB39716D2F }}
-          package: ./public
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
+          package: .
